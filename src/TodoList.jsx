@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function TodoList() {
-    const [task, settask] = useState(["Listen to music", "React todo list"]);
+    const [task, settask] = useState([]);
 
     function addTask() {
         const newTask = document.getElementById("task").value;
@@ -20,19 +20,21 @@ function TodoList() {
 
     function upTask(index) {
         const uptask = [...task];
-        if(index>0){
-        [uptask[index], uptask[index - 1]] = [uptask[index - 1], uptask[index]]
-        settask(uptask);
-    }
+        if (index > 0) {
+            [uptask[index], uptask[index - 1]] = [uptask[index - 1], uptask[index]]
+            settask(uptask);
+        }
     }
 
 
     function downTask(index) {
         const downtask = [...task];
-    if(index<downTask.length){
-        [downtask[index], downtask[index + 1]] = [downtask[index + 1], downtask[index]]
-        settask(downtask);
-    }
+        // console.log("haiiii");
+        if (index < task.length-1) {
+            [downtask[index], downtask[index + 1]] = [downtask[index + 1], downtask[index]]
+            settask(downtask);
+            // console.log("haiiii.................!!!!!!");
+        }
     }
 
 
@@ -43,7 +45,7 @@ function TodoList() {
         <button className="btn down" onClick={() => downTask(index)}>Down</button>
     </li>)
 
-    const length=task.length;
+    const length = task.length;
 
 
 
@@ -57,7 +59,7 @@ function TodoList() {
             <div className="list">
                 {itemss}
             </div>
-            <p className="len">{length} More Task Is Remaining </p>
+            <p className="len">{length} More Task Remaining </p>
         </div>
     );
 }
